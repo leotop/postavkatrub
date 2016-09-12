@@ -1,0 +1,70 @@
+.carousel  {
+    margin: 20px auto 5px auto;
+    width: 100%;
+}
+.carousel-wrapper {
+    margin: 10px 60px;
+    overflow: hidden;
+    position: relative;
+}
+.carousel-items {
+    width: 10000px;
+    position: relative;
+    margin: 40px 0px 0px 0px;
+}
+.carousel-block {
+    float: left;
+    width: 170px;
+    /*border: 1px solid #D6B9A4;*/
+    margin: 0px 10px;
+	overflow: hidden;
+}
+.carousel-block:hover {
+ 
+ }
+.carousel-block img{
+    display: inline-block;
+    max-height: 130px;
+}
+
+.carousel-block a{
+	text-decoration: none;
+}
+.carousel-block p{
+    padding: 10px 0px 10px 0px !important;
+    margin: 0 !important;
+}
+/*********** BUTTONS ***********/
+.carousel-button-left a, .carousel-button-right a{
+   width: 25px; 
+   height: 36px; 
+   position: relative;
+   top: 20px; 
+   cursor: pointer; 
+   text-decoration:none;
+}
+.carousel-button-left a{
+    float: left;
+    display: block;
+    top: 108px;
+    left: 5px;
+    border: none;
+    width: 27px;
+    height: 50px;
+    background: url(/images/arrows.png) no-repeat left top;
+}
+.carousel-button-right a{
+    float: right;
+    right: 5px;
+    top: 108px;
+    display: block;
+    border: none;
+    width: 27px;
+    height: 50px;
+    background: url(/images/arrows.png) no-repeat right top;
+}
+
+/*********** SHADOW ***********/
+.shadow{
+	/*box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);*/
+}

@@ -1,0 +1,25 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"Отопление", 
+		"/otoplenie/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Водоснабжение", 
+		"/vodosnabzhenie/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Канализация", 
+		"/kanalizatsiya-dlya-doma/", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>

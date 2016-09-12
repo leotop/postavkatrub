@@ -1,0 +1,2 @@
+<img src="/images/logo.png" alt="Главная страница" title="Главная страница" width="357" height="60" style="width: 300px; height: auto;display: block;margin: auto;" />
+<span>Отопление. Водоснабжение. Канализация. </span>
