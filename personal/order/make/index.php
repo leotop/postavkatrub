@@ -2,9 +2,9 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Заказы");
 ?><?$APPLICATION->IncludeComponent(
-	"bitrix:sale.order.ajax",
-	"visual",
-	Array(
+	"bitrix:sale.order.ajax", 
+	"postavkatrub.sale.order.ajax", 
+	array(
 		"DISPLAY_IMG_WIDTH" => "90",
 		"DISPLAY_IMG_HEIGHT" => "90",
 		"PATH_TO_BASKET" => "/personal/cart/",
@@ -19,12 +19,27 @@ $APPLICATION->SetTitle("Заказы");
 		"DELIVERY_NO_AJAX" => "Y",
 		"DELIVERY_NO_SESSION" => "N",
 		"TEMPLATE_LOCATION" => ".default",
-		"DELIVERY_TO_PAYSYSTEM" => "d2p",
+		"DELIVERY_TO_PAYSYSTEM" => "p2d",
 		"SET_TITLE" => "Y",
 		"USE_PREPAYMENT" => "N",
 		"DISABLE_BASKET_REDIRECT" => "N",
-		"PRODUCT_COLUMNS" => array(),
-		"PROP_3" => array(),
-		"PROP_4" => array()
-	)
+		"PRODUCT_COLUMNS" => "",
+		"PROP_3" => "",
+		"PROP_4" => "",
+		"COMPONENT_TEMPLATE" => "postavkatrub.sale.order.ajax",
+		"COMPATIBLE_MODE" => "Y",
+		"USE_PRELOAD" => "N",
+		"ALLOW_NEW_PROFILE" => "N",
+		"PRODUCT_COLUMNS_VISIBLE" => array(
+			0 => "PREVIEW_PICTURE",
+			1 => "PROPS",
+		),
+		"ADDITIONAL_PICT_PROP_36" => "-",
+		"ADDITIONAL_PICT_PROP_37" => "-",
+		"ADDITIONAL_PICT_PROP_40" => "-",
+		"BASKET_IMAGES_SCALING" => "standard",
+		"SHOW_PAYMENT_SERVICES_NAMES" => "N",
+		"SHOW_STORES_IMAGES" => "N"
+	),
+	false
 );?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

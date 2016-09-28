@@ -1,0 +1,14 @@
+<?
+$PERM["template.php"]["2"]="X";
+$PERM["template.php"]["3"]="X";
+$PERM["template.php"]["4"]="X";
+$PERM["template.php"]["5"]="X";
+$PERM["template.php"]["6"]="X";
+$PERM["template.php"]["*"]="X";
+$PERM["template_old1.php"]["2"]="X";
+$PERM["template_old1.php"]["3"]="X";
+$PERM["template_old1.php"]["4"]="X";
+$PERM["template_old1.php"]["5"]="X";
+$PERM["template_old1.php"]["6"]="X";
+$PERM["template_old1.php"]["*"]="X";
+?>

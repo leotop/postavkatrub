@@ -1,0 +1,10 @@
+.catalog-price {
+	 color:red;
+}
+h1 {
+  position: absolute;
+  top: 30px;
+  left: 235px;
+  font-size: 14px;
+  font-weight: normal !important;
+}
