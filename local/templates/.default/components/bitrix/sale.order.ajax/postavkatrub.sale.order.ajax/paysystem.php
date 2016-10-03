@@ -146,7 +146,7 @@
                 else // more than one
                 {
                 ?>
-                    <div <?if (!$USER->IsAdmin() && ($arPaySystem["ID"] == 12)) echo "style='display:none'";?> class="bx_block w100 vertical">
+                    <div <?if (!$USER->IsAdmin() && ($arPaySystem["ID"] == SBERBANK_PAYSYSTEM)) echo "style='display:none'";?> class="bx_block w100 vertical">
                         <div class="bx_element">
                             <input type="radio"
                                 id="ID_PAY_SYSTEM_ID_<?=$arPaySystem["ID"]?>"

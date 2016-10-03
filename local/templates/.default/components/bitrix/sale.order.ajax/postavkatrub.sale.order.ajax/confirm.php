@@ -1,7 +1,7 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-<?
-if (!empty($arResult["ORDER"]))
-{
+<? 
+    if (!empty($arResult["ORDER"]))
+    {
     ?>
     <b><?=GetMessage("SOA_TEMPL_ORDER_COMPLETE")?></b><br /><br />
     <table class="sale_order_full_table">
@@ -14,8 +14,8 @@ if (!empty($arResult["ORDER"]))
         </tr>
     </table>
     <?
-    if (!empty($arResult["PAY_SYSTEM"]))
-    {
+        if (!empty($arResult["PAY_SYSTEM"]))
+        {
         ?>
         <br /><br />
 
@@ -28,71 +28,75 @@ if (!empty($arResult["ORDER"]))
                 </td>
             </tr>
             <?
-            if (strlen($arResult["PAY_SYSTEM"]["ACTION_FILE"]) > 0)
-            {
+                if (strlen($arResult["PAY_SYSTEM"]["ACTION_FILE"]) > 0)
+                {
                 ?>
                 <tr>
                     <td>
                         <?
-                        $service = \Bitrix\Sale\PaySystem\Manager::getObjectById($arResult["ORDER"]['PAY_SYSTEM_ID']);
+                            $service = \Bitrix\Sale\PaySystem\Manager::getObjectById($arResult["ORDER"]['PAY_SYSTEM_ID']);
 
-                        if ($arResult["PAY_SYSTEM"]["NEW_WINDOW"] == "Y")
-                        {
+                            if ($arResult["PAY_SYSTEM"]["NEW_WINDOW"] == "Y")
+                            {
                             ?>
                             <script language="JavaScript">
                                 window.open('<?=$arParams["PATH_TO_PAYMENT"]?>?ORDER_ID=<?=urlencode(urlencode($arResult["ORDER"]["ACCOUNT_NUMBER"]))?>&PAYMENT_ID=<?=$arResult['ORDER']["PAYMENT_ID"]?>');
                             </script>
                             <?= GetMessage("SOA_TEMPL_PAY_LINK", Array("#LINK#" => $arParams["PATH_TO_PAYMENT"]."?ORDER_ID=".urlencode(urlencode($arResult["ORDER"]["ACCOUNT_NUMBER"]))."&PAYMENT_ID=".$arResult['ORDER']["PAYMENT_ID"]))?>
                             <?
-                            if (CSalePdf::isPdfAvailable() && $service->isAffordPdf())
-                            {
+                                if (CSalePdf::isPdfAvailable() && $service->isAffordPdf())
+                                {
                                 ?><br />
                                 <?= GetMessage("SOA_TEMPL_PAY_PDF", Array("#LINK#" => $arParams["PATH_TO_PAYMENT"]."?ORDER_ID=".urlencode(urlencode($arResult["ORDER"]["ACCOUNT_NUMBER"]))."&PAYMENT_ID=".$arResult['ORDER']["PAYMENT_ID"]."&pdf=1&DOWNLOAD=Y")) ?>
                                 <?
-                            }
-                        }
-                        else
-                        {
-                            if ($service)
-                            {
-                                /** @var \Bitrix\Sale\Order $order */
-                                $order = \Bitrix\Sale\Order::load($arResult["ORDER_ID"]);
-
-                                /** @var \Bitrix\Sale\PaymentCollection $paymentCollection */
-                                $paymentCollection = $order->getPaymentCollection();
-
-                                /** @var \Bitrix\Sale\Payment $payment */
-                                foreach ($paymentCollection as $payment)
-                                {
-                                    if (!$payment->isInner())
-                                    {
-                                        $context = \Bitrix\Main\Application::getInstance()->getContext();
-                                        $service->initiatePay($payment, $context->getRequest());
-                                        break;
-                                    }
                                 }
                             }
                             else
                             {
-                                echo '<span style="color:red;">'.GetMessage("SOA_TEMPL_ORDER_PS_ERROR").'</span>';
+                                if ($service)
+                                {
+                                    /** @var \Bitrix\Sale\Order $order */
+                                    $order = \Bitrix\Sale\Order::load($arResult["ORDER_ID"]);
+
+                                    /** @var \Bitrix\Sale\PaymentCollection $paymentCollection */
+                                    $paymentCollection = $order->getPaymentCollection();
+
+                                    /** @var \Bitrix\Sale\Payment $payment */
+                                    foreach ($paymentCollection as $payment)
+                                    {
+                                        if (!$payment->isInner())
+                                        {
+                                            $context = \Bitrix\Main\Application::getInstance()->getContext();
+                                            $service->initiatePay($payment, $context->getRequest());
+                                            break;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    echo '<span style="color:red;">'.GetMessage("SOA_TEMPL_ORDER_PS_ERROR").'</span>';
+                                }
                             }
-                        }
                         ?>
                     </td>
 
                 </tr>
                 <?
-            }
-            ?>
+                }
+            ?>                        
+        <?if($arResult["PAY_SYSTEM"]["ID"] == SBERBANK_PAYSYSTEM){?>
+            <td>
+                <?=GetMessage("SBERBANK_PAY_INFO")?>    
+            </td>
+        <?}?>
         </table>
         <?
+        }
     }
-}
-else
-{
+    else
+    {
     ?>
     <b><?=GetMessage("SOA_TEMPL_ERROR_ORDER")?></b><br /><br />
-
     <table class="sale_order_full_table">
         <tr>
             <td>
@@ -102,5 +106,5 @@ else
         </tr>
     </table>
     <?
-}
+    }
 ?>
