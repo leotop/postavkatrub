@@ -76,7 +76,7 @@
 
         <div class="header-phones">
 
-            <?require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/templates/.default/include/login_popup.php');?> 
+            <?require_once($_SERVER['DOCUMENT_ROOT'].'/local/templates/.default/include/login_popup.php');?> 
         </div>
         <div class="lout header-content">
             <a href="/" class="logo">
