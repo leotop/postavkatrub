@@ -156,10 +156,10 @@ $(this).closest('table').find('.quant').val('');
 ////////////////////////////
 
 
-
+ /*
 
 //изменение количества товара в корзине при нажатии на "+" и "-" в "летающей"" корзине
-/*function new_quantityBasket() {
+function new_quantityBasket() {
     //изменение количества товара в разделе каталога при нажатии на "+" в "летающей"" корзине
     $('.yen-bs-button4').live('click', function() { 
         var new_quantBasket=$(this).parent().find('.yen-bs-txt').val()*1+1;
@@ -233,9 +233,9 @@ $(this).closest('table').find('.quant').val('');
 
 }
 
+ */
 
 
-        */
 
 
 function pedia_menu_scroll(){

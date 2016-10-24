@@ -6,10 +6,9 @@
     //arshow($_SESSION);?>
 
 <script>
-    $(function() {
-        width(); 
-        new_quantityBasket();
-
+    $(document).ready(function() {
+        //width(); 
+        //new_quantityBasket();
         $('.cart-item-quantity input:text').change(function() {
             price=parseFloat($(this).val());
             measure = $(this).data('measure');
