@@ -1,3 +1,70 @@
+
+// изменение количества товара в каталоге соотвественно кратности 
+$(document).ready(function() {
+    // при клике на минус
+    $('.minus').click(function () {
+        var $input = $(this).parent().find('input');
+        var measure = $input.data('measure');
+        var count = parseInt($input.val()) - measure;
+        count = count < measure ? measure : count;
+        $input.val(count);
+        $input.change();
+        return false;
+    });
+    // при клике на плюс
+    $('.plus').click(function () {
+        var $input = $(this).parent().find('input');
+        var measure = $input.data('measure');
+        $input.val(parseInt($input.val()) + measure);
+        $input.change();
+        return false;
+    });
+    // при изменении поля вручную, округляем до большего значения
+    $('.quant').change(function () {                
+        var measure = $(this).data('measure');
+        if ($(this).val() < measure) {
+            $(this).val(measure);    
+        }  else if ($(this).val() % measure != 0) {
+            $(this).val(Math.ceil($(this).val() / measure) * measure);       
+        };
+        $(this).change();
+        return false;
+    });
+});
+
+/***
+number - исходное число
+decimals - количество знаков после разделителя
+dec_point - символ разделителя
+thousands_sep - разделитель тысячных
+***/
+function number_format(number, decimals, dec_point, thousands_sep) {
+    number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
+    var n = !isFinite(+number) ? 0 : +number,
+    prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+    sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+    dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+    s = '',
+    toFixedFix = function(n, prec) {
+        var k = Math.pow(10, prec);
+        return '' + (Math.round(n * k) / k)
+        .toFixed(prec);
+    };
+    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n))
+    .split('.');
+    if (s[0].length > 3) {
+        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+    }
+    if ((s[1] || '')
+        .length < prec) {
+        s[1] = s[1] || '';
+        s[1] += new Array(prec - s[1].length + 1)
+        .join('0');
+    }
+    return s.join(dec);
+}
+
 function width() {
     var width1=parseInt($('.basket-title').css("width"))*1+parseInt($('.basket-price').css("width"));
     var height1=parseInt($('#id-cart-list').css("height"));
@@ -22,66 +89,66 @@ function button2() {
 
 
 //изменение количества товара в разделе каталога при нажатии на "+" и "-" в "летающей" корзине
-function new_quantity() {
-    //изменение количества товара в разделе каталога при нажатии на "+" в "летающей" корзине
-    $('.yen-bs-button4').live('click', function() {
-        var new_quant=$(this).parent().find('.yen-bs-txt').val()*1+1;
-        var elId=parseInt($(this).parent().find('.el_id').val());
-        $('.good_quant').each(function() {
-            if (parseInt($(this).attr('id').slice(3))==elId) {
-                $(this).html(new_quant);
-                $(this).closest('table').find('.quant').val('');
-            }
-        });
-    });
-
-
-    //изменение количества товара в разделе каталога при нажатии на "-" в "летающей" корзине
-    $('.yen-bs-button5').live('click', function() {
-        var new_quantMinus=$(this).parent().find('.yen-bs-txt').val()*1-1;
-        var elIdMinus=parseInt($(this).parent().find('.el_id').val());
-        $('.good_quant').each(function() {
-            if (parseInt($(this).attr('id').slice(3))==elIdMinus) {
-                $(this).html(new_quantMinus);
-                $(this).closest('table').find('.quant').val('');
-            }
-        });
-    });
-
-
-    //изменение количества товара в разделе каталога при ручном вводе количества товара в "летающей"" корзине 
-    $('.yen-bs-txt').live('keyup',function(){
-        if ($(this).val()) {var new_quantThis=$(this).val();}
-        else {var new_quantThis=0;}
-        var elIdThis=parseInt($(this).parent().find('.el_id').val());
-        $('.good_quant').each(function() {
-            if (parseInt($(this).attr('id').slice(3))==elIdThis) {
-                $(this).html(new_quantThis);
-                $(this).closest('table').find('.quant').val('');
-            }
-        });
-    });
+/*function new_quantity() {
+//изменение количества товара в разделе каталога при нажатии на "+" в "летающей" корзине
+$('.yen-bs-button4').live('click', function() {
+var new_quant=$(this).parent().find('.yen-bs-txt').val()*1+1;
+var elId=parseInt($(this).parent().find('.el_id').val());
+$('.good_quant').each(function() {
+if (parseInt($(this).attr('id').slice(3))==elId) {
+$(this).html(new_quant);
+$(this).closest('table').find('.quant').val('');
 }
+});
+});
+
+
+//изменение количества товара в разделе каталога при нажатии на "-" в "летающей" корзине
+$('.yen-bs-button5').live('click', function() {
+var new_quantMinus=$(this).parent().find('.yen-bs-txt').val()*1-1;
+var elIdMinus=parseInt($(this).parent().find('.el_id').val());
+$('.good_quant').each(function() {
+if (parseInt($(this).attr('id').slice(3))==elIdMinus) {
+$(this).html(new_quantMinus);
+$(this).closest('table').find('.quant').val('');
+}
+});
+});
+
+
+//изменение количества товара в разделе каталога при ручном вводе количества товара в "летающей"" корзине 
+$('.yen-bs-txt').live('keyup',function(){
+if ($(this).val()) {var new_quantThis=$(this).val();}
+else {var new_quantThis=0;}
+var elIdThis=parseInt($(this).parent().find('.el_id').val());
+$('.good_quant').each(function() {
+if (parseInt($(this).attr('id').slice(3))==elIdThis) {
+$(this).html(new_quantThis);
+$(this).closest('table').find('.quant').val('');
+}
+});
+});
+} */
 
 
 
 //удаление количества товара в разделе каталога при нажатии на "удалить" в "летающей"" корзине
-$('.yen-ys-button6').live('click', function() {
-    //  alert(1);
-    var new_quantDel=0;
-    var elIdDel=parseInt($(this).parent().parent().find('.el_id').val());
-    // $(this).parent().parent().find('.old_q').val(new_quantDel);
-    //  alert(elIdDel);
-    $('#id2_'+elIdDel).val(new_quantDel);
-    $('.good_quant').each(function() {
-        if (parseInt($(this).attr('id').slice(3))==elIdDel) {
-            //  alert(parseInt($(this).attr('id').slice(3)));
-            // alert($(this).html());
-            $(this).html(new_quantDel);
-            $(this).closest('table').find('.quant').val('');
-        }
-    });
+/*$('.yen-ys-button6').live('click', function() {
+//  alert(1);
+var new_quantDel=0;
+var elIdDel=parseInt($(this).parent().parent().find('.el_id').val());
+// $(this).parent().parent().find('.old_q').val(new_quantDel);
+//  alert(elIdDel);
+$('#id2_'+elIdDel).val(new_quantDel);
+$('.good_quant').each(function() {
+if (parseInt($(this).attr('id').slice(3))==elIdDel) {
+//  alert(parseInt($(this).attr('id').slice(3)));
+// alert($(this).html());
+$(this).html(new_quantDel);
+$(this).closest('table').find('.quant').val('');
+}
 });
+}); */
 
 
 
@@ -89,12 +156,12 @@ $('.yen-ys-button6').live('click', function() {
 ////////////////////////////
 
 
-
+ /*
 
 //изменение количества товара в корзине при нажатии на "+" и "-" в "летающей"" корзине
 function new_quantityBasket() {
     //изменение количества товара в разделе каталога при нажатии на "+" в "летающей"" корзине
-    $('.yen-bs-button4').live('click', function() {
+    $('.yen-bs-button4').live('click', function() { 
         var new_quantBasket=$(this).parent().find('.yen-bs-txt').val()*1+1;
         var elIdBasket=parseInt($(this).parent().find('.el_id').val());
         $('.goodId').each(function() {
@@ -166,7 +233,7 @@ function new_quantityBasket() {
 
 }
 
-
+ */
 
 
 
@@ -314,8 +381,14 @@ $(function()  {
     });*/
 
     //при нажатии на Enter товар попадает в корзину
-    $("input[type='text']").keypress(function(event) {
+    $(".quant").keypress(function(event) {
         if (event.which == '13' || event.which == '10') {
+            measure = $(this).data('measure');
+            current_quantity = $(this).val();            
+            if (current_quantity % measure != 0) {
+                current_quantity = Math.ceil(current_quantity / measure) * measure;              
+            }; 
+            $(this).val(current_quantity);
             $(this).parent().find('.addToCart').click(); 
         }
     }); 
@@ -323,44 +396,14 @@ $(function()  {
 
 
 
-    //при нажатии на "Удалить" в разделе каталога товар удаляется из корзины
-    $('.product-offers .cart-shelve-item').live('click',function(e) {
-        e.preventDefault(); 
-        var thisDelId = parseInt($(this).parent().parent().find('.good_quant').attr('id').slice(3));
-        $(this).parent().parent().find('.good_quant').html(0); 
-        $('.el_id').each(function() {
-            //  alert(parseInt($(this).val()));
-            // alert(thisDelId);
-            if (parseInt($(this).val())==thisDelId) {
-                $(this).parent().parent().find('.yen-bs-t_delete .yen-ys-button6').click();
-
-                $.post(
-                    '/catalog/ajax3.php',
-                    {},
-                    function(data) {
-
-                        //   alert(1);
-                        $('#basket-line').html(data); 
-                        // alert(data);
-
-                });
-            }    
-        });
-
-
-    });
-
-
-
 
 
     $(".addToCart").click(function() { 
 
-        $('.yen-bs-box').removeClass('yen-bs-up');
-        $('.yen-bs-popup').removeClass('yen-bs-opened').addClass('yen-bs-closed');
+        //$('.yen-bs-box').removeClass('yen-bs-up');
+        //$('.yen-bs-popup').removeClass('yen-bs-opened').addClass('yen-bs-closed');
 
         if ($(this).parent().find('.quant').val()=='') {
-            //alert(1);
             // alert($(this).parent().find('.quant').val());
             //alert($(this).parent().parent().find('.good_quant').html());
             // $(this).parent().parent().find('.good_quant').html($(this).parent().find('.quant').val());
@@ -378,6 +421,9 @@ $(function()  {
                     $tip.css({ top: pos.top - el[0].offsetWidth/2, left: pos.left + el[0].offsetWidth });
                     $tip.stop().css({opacity: 0, display: 'block', visibility: 'visible'}).animate({opacity: 0.8});
                     window.setTimeout(function(){ $tip.stop().fadeOut(function() { $tip.remove(); }) }, 2000);
+
+                    /*var url = document.location.href;
+                    $("#basket-line").load(url + " #basket-line > *"); */
                 },
             });
 
@@ -397,7 +443,7 @@ $(function()  {
             //alert(quantity);
             var thisId = parseInt($(this).parent().parent().find('.good_quant').attr('id').slice(3));
             var thisVal = parseInt($(this).parent().parent().find('.quant').val());
-            quantity=parseInt($("#id_"+productID).html())*1+quantity;
+            //quantity=parseInt($("#id_"+productID).html())*1+1;
             //alert(thisId);
             $('.el_id').each(function() {
                 if (parseInt($(this).val())==thisId) {
@@ -405,7 +451,7 @@ $(function()  {
                     // alert($(this).parent().find('.yen-bs-txt').val());
                     // alert(thisVal);
 
-                    // alert(quantity);
+                    //alert(quantity);
                     $(this).parent().find('.yen-bs-txt').val(quantity);
                 }
                 //  $(this).parent().parent().find('.good_quant').html(quantity);
@@ -433,6 +479,9 @@ $(function()  {
                     //                            $("#quantity_"+productID).val('');
                     $("#id_"+productID).html(quantity);
                     //$('#basket-line_wrapper').load("document.location.href #basket-line");
+
+                    /*var url = document.location.href;
+                    $("#basket-line").load(url + " #basket-line > *");      */
 
                 },
             });

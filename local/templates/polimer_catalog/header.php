@@ -63,7 +63,7 @@
     <?$APPLICATION->ShowCSS()?>
     <?$APPLICATION->ShowHeadStrings()?>
     <?$APPLICATION->ShowHeadScripts()?>
-
+    
     <script>
         $(function() {
             basket_hover();
@@ -95,25 +95,6 @@
             });         
         });    
     </script>        
-
-    <script type="text/javascript" >
-        $(document).ready(function() {
-            $('.minus').click(function () {
-                var $input = $(this).parent().find('input');
-                var count = parseInt($input.val()) - 1;
-                count = count < 1 ? 1 : count;
-                $input.val(count);
-                $input.change();
-                return false;
-            });
-            $('.plus').click(function () {
-                var $input = $(this).parent().find('input');
-                $input.val(parseInt($input.val()) + 1);
-                $input.change();
-                return false;
-            });
-        });
-    </script>
 
     <link rel="stylesheet" href="/css/tinycarousel.css" type="text/css" media="screen"/>
     <link rel="stylesheet" type="text/css" href="/bitrix/templates/.default/components/bitrix/sale.recommended.products/polimer/style.css">
@@ -200,7 +181,7 @@
         </div>
 
         <div class="header-phones">
-            <?require_once($_SERVER['DOCUMENT_ROOT'].'/local/templates/.default/include/login_popup.php');?>
+            <?require_once($_SERVER['DOCUMENT_ROOT'].'/bitrix/templates/.default/include/login_popup.php');?>
         </div>
         <div class="lout header-content">
             <a href="/" class="logo">
@@ -349,27 +330,32 @@
             ?>
 
             <?
-                $APPLICATION->IncludeComponent("bitrix:sale.basket.basket.small", "bitronic", array(
-                    "PATH_TO_ORDER" => "/personal/order/make/",
-                    "COLOR_SCHEME" => "ice",
-                    "NEW_FONTS" => "Y",
-                    "INCLUDE_JQUERY" => "Y",
-                    "INCLUDE_JGROWL" => "Y",
-                    "VIEW_PROPERTIES" => "N",
-                    "QUANTITY_LOGIC" => "q_positions",
-                    "CHANGE_QUANTITY" => "N",
-                    "CONTROL_QUANTITY" => "N",
-                    "IMAGE" => "",
-                    "CURRENCY" => "",
-                    "MARGIN_TOP" => "0",
-                    "MARGIN_SIDE" => "0",
-                    "START_FLY_PX" => $start_fly_px,
-                    "MARGIN_TOP_FLY_PX" => "0",
-                    "BASKET_POSITION" => "LEFT"
-                    ),
-                    false
-                );?>
-        </div>
+                $APPLICATION->IncludeComponent("bitrix:sale.basket.basket.small", "bitronic_reedit", Array(
+    "PATH_TO_ORDER" => "/personal/order/make/",    // Страница куда направлять по нажатию кнопки "Оформить заказ"
+        "COLOR_SCHEME" => "ice",    // Цветовая схема
+        "NEW_FONTS" => "Y",    // Включить новый шрифт
+        "INCLUDE_JQUERY" => "Y",    // Подключить jQuery из ядра Битрикса
+        "INCLUDE_JGROWL" => "Y",    // Подключить jGrowl (всплывающие окна)
+        "VIEW_PROPERTIES" => "N",    // Включить вывод характеристик (используетя для функционала "покупка с характеристиками")
+        "QUANTITY_LOGIC" => "q_positions",    // В общем количестве выводить
+        "CHANGE_QUANTITY" => "N",    // Запретить изменение количества
+        "CONTROL_QUANTITY" => "N",    // Ограничение кол-ва товара, в зависимости от кол-ва на складе
+        "IMAGE" => "",    // Стандартное поле или код свойства с изображением товара
+        "CURRENCY" => "",    // Подпись валюты (не конвертация)
+        "MARGIN_TOP" => "0",    // Отступ корзины сверху (px)
+        "MARGIN_SIDE" => "0",    // Отступ корзины сбоку (px)
+        "START_FLY_PX" => $start_fly_px,    // Количествово проскролированных пикселей на странице до взлета корзины (px)
+        "MARGIN_TOP_FLY_PX" => "0",    // Отступ корзины сверху, в состояние полета (px)
+        "BASKET_POSITION" => "LEFT",    // Расположение корзины
+        "COMPONENT_TEMPLATE" => "bitronic",
+        "PATH_TO_BASKET" => "/personal/basket.php",
+        "SHOW_DELAY" => "Y",    // Показывать отложенные товары
+        "SHOW_NOTAVAIL" => "Y",    // Показывать товары, недоступные для покупки
+        "SHOW_SUBSCRIBE" => "Y",    // Показывать товары, на которые подписан покупатель
+    ),
+    false
+);?>
+        </div>     
     </div>
 </div>
 <div class="right-block">

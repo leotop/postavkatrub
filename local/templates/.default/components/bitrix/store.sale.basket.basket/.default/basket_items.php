@@ -52,6 +52,19 @@
         $('.cart-shelve-item').click();
         });  */
     });
+    /*$(document).ready(function() {
+        // при изменении поля вручную, округляем до большего значения
+        $('.cart-item-quantity-input').change(function () {                
+            var measure = $(this).data('measure');
+            if ($(this).val() < measure) {
+                $(this).val(measure);    
+            }  else if ($(this).val() % measure != 0) {
+                $(this).val(Math.ceil($(this).val() / measure) * measure);       
+            };
+            $(this).change();
+            return false;
+        });
+    });*/
 </script>
 
 <?//arshow($arResult["ITEMS"]);?>

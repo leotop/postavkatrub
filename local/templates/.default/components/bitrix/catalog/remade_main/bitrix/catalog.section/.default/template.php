@@ -1,8 +1,9 @@
 <?php
     $for_up = CIBlockSection::GetList(array(),array('IBLOCK_ID' => 37,'ID' => $arResult['ID'],'CHECK_PERMISSIONS' => 'N'),false,array('UF_UP_TEXT'))->Fetch();
     $res = CIBlockSection::GetList(array("sort"=>"ASC"), array("SECTION_ID" => $arResult['ID'], "INCLUDE_SUBSECTIONS" => "N" ), false);
-    $show_top = ($res->SelectedRowsCount() > 0);
+    $show_top = ($res->SelectedRowsCount() > 0);  
 ?>
+ 
 <?if(!empty($for_up['UF_UP_TEXT'])):?>
     <div class='static-content'>
         <p style='margin-top:10px;'><?=$for_up['UF_UP_TEXT']?></p>
@@ -94,8 +95,7 @@
                         $this->AddEditAction($arElement['ID'], $arElement['EDIT_LINK'], CIBlock::GetArrayByID($arParams["IBLOCK_ID"], "ELEMENT_EDIT"));
                         $this->AddDeleteAction($arElement['ID'], $arElement['DELETE_LINK'], CIBlock::GetArrayByID($arParams["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BCS_ELEMENT_DELETE_CONFIRM')));
                     ?>
-
-                    <?
+                    <?                        
                         if($arElement['DETAIL_PAGE_URL'] == "/catalog/#SECTION_CODE_PATH#/#ELEMENT_ID#/"){
                             $arSelect = Array("DETAIL_PAGE_URL");
                             $arFilter = Array("IBLOCK_ID"=>"37", "ID"=>$arElement['ID'], "ACTIVE"=>"Y");
@@ -113,7 +113,7 @@
                         }
                     ?> 
 
-                    <?
+                    <? 
                         //проверяем есть ли товар в корзине и сохраняем в переменную кол-во
                         if (array_key_exists($arElement['ID'], $arBasketGoods)) {
                             $goodQuant=$arBasketGoods[$arElement['ID']];
@@ -191,7 +191,7 @@
                                                 </td>
                                                 <td>
                                                     <span class="minus">-</span>
-                                                    <input class="quant" type="text" id="quantity_<?=$arElement['ID']; ?>" value="1">
+                                                    <input class="quant" type="text" id="quantity_<?=$arElement['ID']; ?>" data-measure="<?if($arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]){ echo $arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]; } else { echo '1'; }?>" value="<?if($arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]){ echo $arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]; } else { echo '1'; }?>">
                                                     <span class="plus">+</span>
                                                     <span style="display:none;" id='id_<?=$arElement['ID'];?>' class="good_quant"><?=$goodQuant?></span>    
                                                     <button value="<?=$arElement['ID']; ?>" class="addToCart"></button> <!--<a class="cart-shelve-item" href="" title="Удалить товар из корзины"><img src="/images/del1.png" /></a>-->
@@ -236,7 +236,7 @@
                                                 </td>
                                                 <td>
                                                     <span class="minus">-</span>
-                                                    <input class="quant" type="text" id="quantity_<?=$arElement['ID']; ?>" value="1">
+                                                    <input class="quant" type="text" id="quantity_<?=$arElement['ID']; ?>" data-measure="<?if($arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]){ echo $arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]; } else { echo '1'; }?>" value="<?if($arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]){ echo $arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]; } else { echo '1'; }?>">
                                                     <span class="plus">+</span>
                                                     <span style="display:none;" id='id_<?=$arElement['ID'];?>' class="good_quant"><?=$goodQuant?></span>
                                                 <button value="<?=$arElement['ID']; ?>" class="addToCart"></button><!--<a class="cart-shelve-item" href="" title="Удалить товар из корзины"><img src="/images/del1.png" /></a>--></td>
@@ -306,7 +306,7 @@
                                                 </td>
                                                 <td>
                                                     <span class="minus">-</span>
-                                                    <input class="quant" type="text" id="quantity_<?=$arElement['ID']; ?>" value="1">
+                                                    <input class="quant" type="text" id="quantity_<?=$arElement['ID']; ?>" data-measure="<?if($arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]){ echo $arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]; } else { echo '1'; }?>" value="<?if($arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]){ echo $arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]; } else { echo '1'; }?>">
                                                     <span class="plus">+</span>
                                                     <span style="display:none;" id='id_<?=$arElement['ID'];?>' class="good_quant"><?=$goodQuant?></span>
                                                 <button value="<?=$arElement['ID']; ?>" class="addToCart"></button><!--<a class="cart-shelve-item" href="" title="Удалить товар из корзины"><img src="/images/del1.png" /></a>--></td>
@@ -400,7 +400,7 @@
                                     </td>
                                     <td class="plus_ad">
                                         <span class="minus">-</span>
-                                        <input class="quant" type="text" id="quantity_<?=$row['ID']?>" value="1">
+                                        <input class="quant" type="text" id="quantity_<?=$row['ID']?>" data-measure="<?if($arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]){ echo $arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]; } else { echo '1'; }?>" value="<?if($arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]){ echo $arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]; } else { echo '1'; }?>">
                                         <span class="plus">+</span>
                                         <span style="display:none;" id='id_<?=$row['ID']?>' class="good_quant"><?=$goodQuant?></span>
                                         <button class="addToCart" value="<?=$row['ID']?>" class="addToCart"></button></td>
@@ -412,6 +412,8 @@
                 </div>
             </div>
         </div>
+        
+
         <?endif?>
-    <?endif?>
+    <?endif?>  
 <!-- ad > -->

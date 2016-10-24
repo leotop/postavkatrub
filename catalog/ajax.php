@@ -52,7 +52,7 @@ if(($_REQUEST['action'] == "ADD2BASKET") && $productID > 0) {
                     ?>
 
 <?
-$APPLICATION->IncludeComponent("bitrix:sale.basket.basket.small", "bitronic", array(
+$APPLICATION->IncludeComponent("bitrix:sale.basket.basket.small", "bitronic_reedit", array(
     "PATH_TO_ORDER" => "/personal/order/make/",
     "COLOR_SCHEME" => "ice",
     "NEW_FONTS" => "Y",
