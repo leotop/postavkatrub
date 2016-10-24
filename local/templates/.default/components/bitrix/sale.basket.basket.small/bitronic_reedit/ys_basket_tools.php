@@ -9,12 +9,12 @@
         case 'setQuantity':
             $new_quantity = IntVal($_POST['new_quantity']);
             $basketItem = CSaleBasket::GetByID($id_basket_element);
-            $arSelect = Array("PROPERTY_MEASURE");
+            $arSelect = Array("PROPERTY_KOEFFITSIENT");
             $arFilter = Array("ID" => $basketItem['PRODUCT_ID']);
             $res = CIBlockElement::GetList(Array(), $arFilter, false, Array(), $arSelect);
             while($arFields = $res->Fetch()) { 
-                if($arFields["PROPERTY_MEASURE_VALUE"]) {
-                    $measure = $arFields["PROPERTY_MEASURE_VALUE"];      
+                if($arFields["PROPERTY_KOEFFITSIENT_VALUE"]) {
+                    $measure = $arFields["PROPERTY_KOEFFITSIENT_VALUE"];      
                 } else {
                     $measure = 1; 
                 }          

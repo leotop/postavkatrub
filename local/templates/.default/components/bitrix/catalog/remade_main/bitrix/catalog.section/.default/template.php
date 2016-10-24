@@ -191,7 +191,7 @@
                                                 </td>
                                                 <td>
                                                     <span class="minus">-</span>
-                                                    <input class="quant" type="text" id="quantity_<?=$arElement['ID']; ?>" data-measure="<?if($arElement["PROPERTIES"]["MEASURE"]["VALUE"]){ echo $arElement["PROPERTIES"]["MEASURE"]["VALUE"]; } else { echo '1'; }?>" value="<?if($arElement["PROPERTIES"]["MEASURE"]["VALUE"]){ echo $arElement["PROPERTIES"]["MEASURE"]["VALUE"]; } else { echo '1'; }?>">
+                                                    <input class="quant" type="text" id="quantity_<?=$arElement['ID']; ?>" data-measure="<?if($arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]){ echo $arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]; } else { echo '1'; }?>" value="<?if($arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]){ echo $arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]; } else { echo '1'; }?>">
                                                     <span class="plus">+</span>
                                                     <span style="display:none;" id='id_<?=$arElement['ID'];?>' class="good_quant"><?=$goodQuant?></span>    
                                                     <button value="<?=$arElement['ID']; ?>" class="addToCart"></button> <!--<a class="cart-shelve-item" href="" title="Удалить товар из корзины"><img src="/images/del1.png" /></a>-->
@@ -236,7 +236,7 @@
                                                 </td>
                                                 <td>
                                                     <span class="minus">-</span>
-                                                    <input class="quant" type="text" id="quantity_<?=$arElement['ID']; ?>" data-measure="<?if($arElement["PROPERTIES"]["MEASURE"]["VALUE"]){ echo $arElement["PROPERTIES"]["MEASURE"]["VALUE"]; } else { echo '1'; }?>" value="<?if($arElement["PROPERTIES"]["MEASURE"]["VALUE"]){ echo $arElement["PROPERTIES"]["MEASURE"]["VALUE"]; } else { echo '1'; }?>">
+                                                    <input class="quant" type="text" id="quantity_<?=$arElement['ID']; ?>" data-measure="<?if($arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]){ echo $arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]; } else { echo '1'; }?>" value="<?if($arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]){ echo $arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]; } else { echo '1'; }?>">
                                                     <span class="plus">+</span>
                                                     <span style="display:none;" id='id_<?=$arElement['ID'];?>' class="good_quant"><?=$goodQuant?></span>
                                                 <button value="<?=$arElement['ID']; ?>" class="addToCart"></button><!--<a class="cart-shelve-item" href="" title="Удалить товар из корзины"><img src="/images/del1.png" /></a>--></td>
@@ -306,7 +306,7 @@
                                                 </td>
                                                 <td>
                                                     <span class="minus">-</span>
-                                                    <input class="quant" type="text" id="quantity_<?=$arElement['ID']; ?>" data-measure="<?if($arElement["PROPERTIES"]["MEASURE"]["VALUE"]){ echo $arElement["PROPERTIES"]["MEASURE"]["VALUE"]; } else { echo '1'; }?>" value="<?if($arElement["PROPERTIES"]["MEASURE"]["VALUE"]){ echo $arElement["PROPERTIES"]["MEASURE"]["VALUE"]; } else { echo '1'; }?>">
+                                                    <input class="quant" type="text" id="quantity_<?=$arElement['ID']; ?>" data-measure="<?if($arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]){ echo $arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]; } else { echo '1'; }?>" value="<?if($arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]){ echo $arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]; } else { echo '1'; }?>">
                                                     <span class="plus">+</span>
                                                     <span style="display:none;" id='id_<?=$arElement['ID'];?>' class="good_quant"><?=$goodQuant?></span>
                                                 <button value="<?=$arElement['ID']; ?>" class="addToCart"></button><!--<a class="cart-shelve-item" href="" title="Удалить товар из корзины"><img src="/images/del1.png" /></a>--></td>
@@ -400,7 +400,7 @@
                                     </td>
                                     <td class="plus_ad">
                                         <span class="minus">-</span>
-                                        <input class="quant" type="text" id="quantity_<?=$row['ID']?>" data-measure="<?if($arElement["PROPERTIES"]["MEASURE"]["VALUE"]){ echo $arElement["PROPERTIES"]["MEASURE"]["VALUE"]; } else { echo '1'; }?>" value="<?if($arElement["PROPERTIES"]["MEASURE"]["VALUE"]){ echo $arElement["PROPERTIES"]["MEASURE"]["VALUE"]; } else { echo '1'; }?>">
+                                        <input class="quant" type="text" id="quantity_<?=$row['ID']?>" data-measure="<?if($arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]){ echo $arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]; } else { echo '1'; }?>" value="<?if($arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]){ echo $arElement["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]; } else { echo '1'; }?>">
                                         <span class="plus">+</span>
                                         <span style="display:none;" id='id_<?=$row['ID']?>' class="good_quant"><?=$goodQuant?></span>
                                         <button class="addToCart" value="<?=$row['ID']?>" class="addToCart"></button></td>

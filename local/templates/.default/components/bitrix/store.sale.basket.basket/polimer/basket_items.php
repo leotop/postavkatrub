@@ -169,7 +169,7 @@
                                                         echo number_format($arBasketItem['PRICE'], 2, '.', ' ');?></td>
                                                     <?endif;?>
                                                 <?if (in_array("QUANTITY", $arParams["COLUMNS_LIST"])):?>
-                                                    <td class="cart-item-quantity">
+                                                    <td class="cart-item-quantity"> 
                                                         <input class="cart-item-quantity-input" maxlength="15" type="text" data-measure="<?=$arBasketItem["MEASURE"]?>" name="QUANTITY_<?=$arBasketItem["ID"] ?>" value="<?=$arBasketItem["QUANTITY"]?>" size="3" onkeyup="validateInt(this)">
                                                         <input class="goodId" type="hidden" value="<?=$arBasketItem['PRODUCT_ID']?>" />
                                                     </td>

@@ -42,11 +42,11 @@
         $arItemID[] = $arElement["PRODUCT_ID"];        
     }          
 
-    $arSelect = Array("ID", "PROPERTY_MEASURE");
+    $arSelect = Array("ID", "PROPERTY_KOEFFITSIENT");
     $arFilter = Array("ID" => $arItemID);
     $res = CIBlockElement::GetList(Array(), $arFilter, false, Array(), $arSelect);
     while($arFields = $res->Fetch()) { 
-        if($arFields["PROPERTY_MEASURE_VALUE"]) {
+        if($arFields["PROPERTY_KOEFFITSIENT_VALUE"]) {
             $arResult['MEASURE'][] = $arFields;        
         } else {
             $arProp["ID"] = $arFields["ID"];
@@ -57,7 +57,7 @@
     foreach($arResult['ITEMS']["AnDelCanBuy"] as $ItemID => $arElement) {
         foreach($arResult['MEASURE'] as $MeasureProp) {
             if($arResult['ITEMS']["AnDelCanBuy"][$ItemID]['PRODUCT_ID'] == $MeasureProp["ID"]) {
-                $arResult['ITEMS']["AnDelCanBuy"][$ItemID]['MEASURE'] = $MeasureProp["PROPERTY_MEASURE_VALUE"];        
+                $arResult['ITEMS']["AnDelCanBuy"][$ItemID]['MEASURE'] = $MeasureProp["PROPERTY_KOEFFITSIENT_VALUE"];        
             }     
         }      
     }

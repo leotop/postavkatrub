@@ -190,7 +190,7 @@
                     echo $exp_price[0].','.$cop.*/ echo $newval?> руб.&nbsp;&nbsp;
             </span>
             <span class="minus">-</span>
-            <input class="quant2" type="text" id="quantity2_<?=$arResult['ID']; ?>" value="<?=$arResult["PROPERTIES"]["MEASURE"]["VALUE"];?>" data-measure="<?if($arResult["PROPERTIES"]["MEASURE"]["VALUE"]){ echo $arResult["PROPERTIES"]["MEASURE"]["VALUE"]; } else { echo '1'; }?>" >
+            <input class="quant2" type="text" id="quantity2_<?=$arResult['ID']; ?>" value="<?=$arResult["PROPERTIES"]["KOEFFITSIENT"]["VALUE"];?>" data-measure="<?if($arResult["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]){ echo $arResult["PROPERTIES"]["KOEFFITSIENT"]["VALUE"]; } else { echo '1'; }?>" >
             <span class="plus">+</span>
             <button value="<?=$arResult['ID']; ?>" class="addToCart2">В корзину</button>
         </div>
