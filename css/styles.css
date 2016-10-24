@@ -372,7 +372,7 @@ button.bButton {border:0; height:23px; cursor:pointer; background:url(../images/
     .price_row input[type="text"]{
       margin: 0 0 0 0;
       float:left !important;
-      width:26px;
+      width:40px;
       height:30px;
       border:1px solid #ababab;
       color:#828282;

@@ -82,10 +82,10 @@ if($seo['SECTION_PAGE_TITLE'])
 ?>
 <script>
 $('.quant').keyup(function(){
-    if(event.keyCode==13)
-       {
+    /*if(event.keyCode==13)
+       { 
           $(addToCart).on("click");
           return false;
-       }
+       } */
 })
 </script>

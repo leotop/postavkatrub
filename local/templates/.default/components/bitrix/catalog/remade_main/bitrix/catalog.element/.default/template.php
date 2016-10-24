@@ -44,15 +44,30 @@
 
 
 <script>
+    $(document).ready(function() {
+        $(".quant2").on("change", function() {
+            measure = $(this).data("measure");
+            current_quantity = $(this).val();           
+            if (current_quantity % measure != 0) {
+                current_quantity = Math.ceil(current_quantity / measure) * measure;                       
+            };
+            $(this).val(current_quantity);
+        })    
+    });
+    
     $(function() {
         //добавление товара в корзину при нажатии на Enter
         $(".quant2").keypress(function(event) {
             if (event.which == '13' || event.which == '10') {
+                measure = $(this).data("measure");
+                current_quantity = $(this).val();           
+                if (current_quantity % measure != 0) {
+                    current_quantity = Math.ceil(current_quantity / measure) * measure;                       
+                };
+                $(this).val(current_quantity);
                 $(".addToCart2").click();
             }
         });
-
-
         $(".addToCart2").click(function() {
             if ($('.quant2').val()=='') {
 
@@ -129,16 +144,16 @@
         <?if(false):?><h2><?=$arResult['NAME']?></h2><?endif?>
         <?
             if(count($arResult['PROPERTIES'])) {
-        ?>
-        <ul class="product-features">
+            ?>
+            <ul class="product-features">
 
-            <li><b><?=$arResult['PROPERTIES']['_']['NAME']?>:</b>&nbsp; <?=$arResult['PROPERTIES']['_']['VALUE']?></li>
-            <li><b><?=$arResult['PROPERTIES']['_size']['NAME']?>:</b>&nbsp; <?=$arResult['PROPERTIES']['_size']['VALUE']?></li>
-            <li><b><?=GetMessage('CATALOG_QUANTITY')?></b>&nbsp; 
-                <?if($arResult['CATALOG_QUANTITY'] > 0) {
-                    echo $arResult['CATALOG_QUANTITY'];                    
-                    } else {
-                        echo GetMessage('CATALOG_QUANTITY_NONE');
+                <li><b><?=$arResult['PROPERTIES']['_']['NAME']?>:</b>&nbsp; <?=$arResult['PROPERTIES']['_']['VALUE']?></li>
+                <li><b><?=$arResult['PROPERTIES']['_size']['NAME']?>:</b>&nbsp; <?=$arResult['PROPERTIES']['_size']['VALUE']?></li>
+                <li><b><?=GetMessage('CATALOG_QUANTITY')?></b>&nbsp; 
+                    <?if($arResult['CATALOG_QUANTITY'] > 0) {
+                            echo $arResult['CATALOG_QUANTITY'];                    
+                        } else {
+                            echo GetMessage('CATALOG_QUANTITY_NONE');
                     }?>                
                 </li>
                 <?foreach($arResult["PROPERTIES"]["CML2_ATTRIBUTES"]["VALUE"] as $k=>$value):?>
@@ -175,7 +190,7 @@
                     echo $exp_price[0].','.$cop.*/ echo $newval?> руб.&nbsp;&nbsp;
             </span>
             <span class="minus">-</span>
-            <input class="quant2" type="text" id="quantity2_<?=$arResult['ID']; ?>" value="1">
+            <input class="quant2" type="text" id="quantity2_<?=$arResult['ID']; ?>" value="<?=$arResult["PROPERTIES"]["MEASURE"]["VALUE"];?>" data-measure="<?if($arResult["PROPERTIES"]["MEASURE"]["VALUE"]){ echo $arResult["PROPERTIES"]["MEASURE"]["VALUE"]; } else { echo '1'; }?>" >
             <span class="plus">+</span>
             <button value="<?=$arResult['ID']; ?>" class="addToCart2">В корзину</button>
         </div>
