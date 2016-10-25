@@ -31,20 +31,20 @@
     </script>
 
     <script>
-        $(function() {		 
-            $(window).scroll(function() {		 
-                if($(this).scrollTop() != 0) {		 
-                    $('#toTop').fadeIn();		 
-                } else {		 
-                    $('#toTop').fadeOut();		 
-                }		 
+        $(function() {         
+            $(window).scroll(function() {         
+                if($(this).scrollTop() != 0) {         
+                    $('#toTop').fadeIn();         
+                } else {         
+                    $('#toTop').fadeOut();         
+                }         
             });
 
-            $('#toTop').click(function() {		 
-                $('body,html').animate({scrollTop:0},800);		 
-            });		 
-        });	
-    </script>		
+            $('#toTop').click(function() {         
+                $('body,html').animate({scrollTop:0},800);         
+            });         
+        });    
+    </script>        
 
 
     <meta name="mailru-domain" content="heKkqj1lb4wytzC6" />
@@ -61,7 +61,7 @@
 </head>
 <body>
 <div id='toTop' style='z-index:200;cursor:pointer;display:none;width:70px;height:35px;position:fixed;right:10%;bottom:110px;background:rgba(64, 71, 79, 0.4);border-radius:5px;'>
-    <span style='display:block;border-left:2px solid #999;border-top:2px solid #999;width:10px;height:10px;transform:rotate(45deg);position:absolute;top:13px;left:30px;'></span></div>	
+    <span style='display:block;border-left:2px solid #999;border-top:2px solid #999;width:10px;height:10px;transform:rotate(45deg);position:absolute;top:13px;left:30px;'></span></div>    
 <div id="panel"><?$APPLICATION->ShowPanel();?></div>
 <div class="wrapper-holder">
 <div class="header">
@@ -216,32 +216,32 @@
 
         <?
             $APPLICATION->IncludeComponent(
-	"bitrix:sale.basket.basket.small", 
-	"bitronic_edit", 
-	array(
-		"PATH_TO_ORDER" => "/personal/order/make/",
-		"COLOR_SCHEME" => "ice",
-		"NEW_FONTS" => "Y",
-		"INCLUDE_JQUERY" => "Y",
-		"INCLUDE_JGROWL" => "Y",
-		"VIEW_PROPERTIES" => "N",
-		"QUANTITY_LOGIC" => "q_positions",
-		"CHANGE_QUANTITY" => "N",
-		"CONTROL_QUANTITY" => "N",
-		"IMAGE" => "",
-		"CURRENCY" => "",
-		"MARGIN_TOP" => "0",
-		"MARGIN_SIDE" => "0",
-		"START_FLY_PX" => $start_fly_px,
-		"MARGIN_TOP_FLY_PX" => "0",
-		"BASKET_POSITION" => "LEFT",
-		"COMPONENT_TEMPLATE" => "bitronic_edit",
-		"PATH_TO_BASKET" => "/personal/basket.php",
-		"SHOW_DELAY" => "Y",
-		"SHOW_NOTAVAIL" => "Y",
-		"SHOW_SUBSCRIBE" => "Y"
-	),
-	false
+    "bitrix:sale.basket.basket.small", 
+    "bitronic_edit", 
+    array(
+        "PATH_TO_ORDER" => "/personal/order/make/",
+        "COLOR_SCHEME" => "ice",
+        "NEW_FONTS" => "Y",
+        "INCLUDE_JQUERY" => "Y",
+        "INCLUDE_JGROWL" => "Y",
+        "VIEW_PROPERTIES" => "N",
+        "QUANTITY_LOGIC" => "q_positions",
+        "CHANGE_QUANTITY" => "N",
+        "CONTROL_QUANTITY" => "N",
+        "IMAGE" => "",
+        "CURRENCY" => "",
+        "MARGIN_TOP" => "0",
+        "MARGIN_SIDE" => "0",
+        "START_FLY_PX" => $start_fly_px,
+        "MARGIN_TOP_FLY_PX" => "0",
+        "BASKET_POSITION" => "LEFT",
+        "COMPONENT_TEMPLATE" => "bitronic_edit",
+        "PATH_TO_BASKET" => "/personal/basket.php",
+        "SHOW_DELAY" => "Y",
+        "SHOW_NOTAVAIL" => "Y",
+        "SHOW_SUBSCRIBE" => "Y"
+    ),
+    false
 );?>
     </div>
 </div>

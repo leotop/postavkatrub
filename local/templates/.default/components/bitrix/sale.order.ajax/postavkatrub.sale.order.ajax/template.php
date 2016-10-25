@@ -30,8 +30,8 @@
             27 => $arUser["NAME"]." ".$arUser["LAST_NAME"],
             28 => $arUser["WORK_PHONE"],
             29 => $arUser["EMAIL"],            
-            31 => $arUser["WORK_COMPANY"], //Íàçâàíèå êîìïàíèè         
-            35 => $arUser["WORK_POSITION"], //Äîëæíîñòü          
+            31 => $arUser["WORK_COMPANY"], //ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ ÐºÐ¾Ð¼Ð¿Ð°Ð½Ð¸Ð¸         
+            35 => $arUser["WORK_POSITION"], //Ð”Ð¾Ð»Ð¶Ð½Ð¾ÑÑ‚ÑŒ          
         ); 
            
         foreach($arResult["ORDER_PROP"]["USER_PROPS_Y"] as $UserPropsID => $arUserProps) {
