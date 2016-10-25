@@ -274,15 +274,19 @@ function yenisite_set_quantity(id, sign, url, titles, control_quantity, product_
     var new_quantity = 0;
     var id_basket_element = '';
     var delta_quantity = 0;
-    var str_total_sum = '';
+    var str_total_sum = ''; 
     if(sign != 'c')
         current_quantity = $('#YS_BS_QUANTITY_'+id).val();
     else
         current_quantity = $('#YS_BS_OLD_Q_'+id).val();
     price = $('#YS_BS_PRICE_'+id).val();
     total_sum = $('#yen-bs-all-sum').val();
+    
     old_totla_sum = total_sum;
-    total_sum = total_sum - price * current_quantity ;
+    console.log("total_sum old " + total_sum);
+    console.log("total_sum change " + (price * current_quantity));    
+    console.log("total_sum current_quantity " + current_quantity);
+    total_sum = total_sum - price * current_quantity;
     old_quantity = current_quantity ;
     if(Number(current_quantity) >= 0){
         switch(sign){
@@ -311,9 +315,9 @@ function yenisite_set_quantity(id, sign, url, titles, control_quantity, product_
         id_basket_element = $('#YS_BS_QUANTITY_'+id).attr('name');
         id_basket_element = id_basket_element.replace('YS_BS_QUANTITY_', '');
         
-        console.log("yenisite_set_quantity id:" + id + " sign:" + sign + " url:" + url + " titles:" + titles + " control_quantity:" + control_quantity + " product_id:" + product_id + " quantity_logic:" + quantity_logic + " err3:" + err3);
+        //console.log("yenisite_set_quantity id:" + id + " sign:" + sign + " url:" + url + " titles:" + titles + " control_quantity:" + control_quantity + " product_id:" + product_id + " quantity_logic:" + quantity_logic + " err3:" + err3);
         
-        $.post(url, {id_basket_element: id_basket_element, new_quantity: new_quantity, action: 'setQuantity', control_quantity: control_quantity, product_id:product_id},
+        $.post(url, {id_basket_element: id_basket_element, new_quantity: new_quantity, action: 'setQuantity', control_quantity: control_quantity, product_id:product_id, sign:sign},
         function(data) {
             data = $.trim(data) ;
             new_quantity = Number(data);
@@ -326,13 +330,17 @@ function yenisite_set_quantity(id, sign, url, titles, control_quantity, product_
                     $('#YS_BS_COUNT_STRING').html(yenisite_declOfNum(product_count, titles));
                 }
                 $('#YS_BS_QUANTITY_'+id).val(new_quantity);
-                total_sum += price * new_quantity ;
+                total_sum += price * new_quantity; 
                 if(total_sum < 0 || isNaN(total_sum))
                     total_sum = 0;
                 $('#yen-bs-all-sum').val(total_sum);
                 str_total_sum = yenisite_number_format(total_sum, 2, ',', ' ') ;
-                $('#YS_BS_TOTALSUM_TOP').html(str_total_sum);
-                $('#YS_BS_TOTALSUM').html(str_total_sum);
+                /*$('#YS_BS_TOTALSUM_TOP').html(str_total_sum);
+                $('#YS_BS_TOTALSUM').html(str_total_sum);   */
+                url = document.location.href;
+                 
+                $('#YS_BS_TOTALSUM_TOP').load(url + " #YS_BS_TOTALSUM_TOP > *");
+                $('.yen-bs-sum').load(url + " .yen-bs-sum > *");
 
                 $('.basket-price').html(str_total_sum +' руб.');
                 $('.total-price b').html(str_total_sum +' руб.');

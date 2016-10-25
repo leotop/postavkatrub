@@ -3,9 +3,12 @@
     return false;
 
     $id_basket_element = IntVal($_POST['id_basket_element']);
-    $return_basket_small = false; 
+    $return_basket_small = false;
+    console.log($_POST['action']);
+    console.log($_POST['new_quantity']); 
+    console.log($_POST['sign']);  
     switch($_POST['action'])
-    {
+    {         
         case 'setQuantity':
             $new_quantity = IntVal($_POST['new_quantity']);
             $basketItem = CSaleBasket::GetByID($id_basket_element);
@@ -18,15 +21,16 @@
                 } else {
                     $measure = 1; 
                 }          
-            } 
-            
-            if (($new_quantity + 1) % $measure != 0) {                
-                $new_quantity = ceil($new_quantity / $measure) * $measure;
-            } else {
-                $new_quantity = floor($new_quantity / $measure) * $measure; 
-            };
+            }
+             
+            if ($new_quantity % $measure != 0) {    
+                if ($_POST['sign'] == 'm') {
+                    $new_quantity = floor($new_quantity / $measure) * $measure;    
+                } else {
+                    $new_quantity = ceil($new_quantity / $measure) * $measure;
+                }; 
+            }; 
 
-                        
             if(!$basketItem['ORDER_ID'] && $basketItem['FUSER_ID'] == CSaleBasket::GetBasketUserID())
             {
                 if($new_quantity > 0){
