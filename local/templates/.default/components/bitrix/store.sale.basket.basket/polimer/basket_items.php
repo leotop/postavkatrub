@@ -9,7 +9,7 @@
     $(document).ready(function() {
         //width(); 
         //new_quantityBasket();
-        $('.cart-item-quantity input:text').change(function() {
+        $('.cart-item-quantity input:text').blur(function() {
             price=parseFloat($(this).val());
             measure = $(this).data('measure');
             if (price % measure != 0) {
@@ -24,7 +24,6 @@
             //sum=sum.toFixed(2);
             if (isNaN(sum)) {sum=0;}
             sum = number_format(sum, 2, '.', ' ');
-            alert(sum);
             $(this).parent().parent().find('.sum').text(sum);
             //alert($(this).val());
 
