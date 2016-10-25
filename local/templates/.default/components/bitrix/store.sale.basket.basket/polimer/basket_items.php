@@ -9,7 +9,7 @@
     $(document).ready(function() {
         //width(); 
         //new_quantityBasket();
-        $('.cart-item-quantity input:text').blur(function() {
+        $('.cart-item-quantity input:text').change(function() {
             price=parseFloat($(this).val());
             measure = $(this).data('measure');
             if (price % measure != 0) {
@@ -78,13 +78,13 @@
     <div class="cart-items" id="id-cart-list">
         <?if(count($arResult["ITEMS"]["AnDelCanBuy"]) > 0):?>
             <div class="product-desr clearfix">
-                <table class="product-list-head">
+                <table class="product-list-head-basket">
                     <colgroup>
-                        <col width="193">
-                        <col width="66">
-                        <col width="91">
-                        <col width="102">
-                        <col width="148">
+                        <col width="183">
+                        <col width="69">
+                        <col width="97">
+                        <col width="106">
+                        <col width="160">
                         <col width="">
                     </colgroup>
                     <tr>
@@ -93,7 +93,7 @@
                         <td>Цена за ед., руб.</td>
                         <td>Количество</td>
                         <td>Сумма, руб.</td>
-                        <td></td>
+                        <td class="last-basket-td"></td>
 
                         <?/*
                             <?if (in_array("NAME", $arParams["COLUMNS_LIST"])):?>
@@ -122,69 +122,73 @@
                 <?
                     foreach($arResult['ROOT_ITEMS'] as $arItem) {
                     ?>
-                    <div class="product-row">
-                        <div class="product-row-inner">
-                            <h4><a href="<?=$arItem['DETAIL_PAGE_URL']; ?>"><?=$arItem['NAME']; ?></a></h4>
-                            <div class="product-desr clearfix">
+                    <div class="product-basket">
+                        <div class="product-row">
+                            <div class="product-row-inner">
+                                <?/*<h4><a href="<?=$arItem['DETAIL_PAGE_URL']; ?>"><?=$arItem['NAME']; ?></a></h4>*/?>
+                                <div class="product-desr clearfix">
 
-                                <table class="product-offers" cellpadding="0" cellspacing="0">
-                                    <colgroup>
-                                        <col width="185">
-                                        <col width="75">
-                                        <col width="102">
-                                        <col width="112">
-                                        <col width="170">
-                                        <col width="83">
-                                    </colgroup>
-                                    <tbody>
-                                        <?
-                                            foreach($arItem['OFFER_KEYS'] as $offerKey) {
-                                                $arBasketItem = $arResult["ITEMS"]["AnDelCanBuy"][$offerKey];
-
-                                                $res = CIBlockElement::GetList(Array(), array('ID'=>$arBasketItem['PRODUCT_ID']), false, false, array('PROPERTY__size'));
-                                                while($ob = $res->Fetch())
-                                                {
-                                                    $size=$ob['PROPERTY__SIZE_VALUE'];
-                                                }   
-
-
-                                                $res = CIBlockElement::GetByID($arBasketItem["PRODUCT_ID"]);
-                                                if($ar_res = $res->GetNext())
-                                                    $sect_id=$ar_res['IBLOCK_SECTION_ID'];
-                                            ?>
-                                            <tr>
-
-                                                <?  
-                                                    foreach($arBasketItem['PROPS'] as $arProp) {
-                                                        if($arProp['CODE'] != 'CML2_LINK') {
-                                                        ?>
-
-                                                        <?
-                                                        }
-                                                    }
-                                                ?> <td class="prod_name"><a href="/catalog/<?=$sect_id?>/<?=$arBasketItem["PRODUCT_ID"]?>/"><?=html_entity_decode($arBasketItem['NAME']); ?></a></td>
-                                                <td><?=$size?></td>
-                                                <?if (in_array("PRICE", $arParams["COLUMNS_LIST"])):?>
-                                                    <td class="cart-item-price"><?
-                                                        echo number_format($arBasketItem['PRICE'], 2, '.', ' ');?></td>
-                                                    <?endif;?>
-                                                <?if (in_array("QUANTITY", $arParams["COLUMNS_LIST"])):?>
-                                                    <td class="cart-item-quantity"> 
-                                                        <input class="cart-item-quantity-input" maxlength="15" type="text" data-measure="<?if (!empty($arBasketItem["MEASURE"])){ echo $arBasketItem["MEASURE"];} else { echo "1"; }?>" name="QUANTITY_<?=$arBasketItem["ID"] ?>" value="<?=$arBasketItem["QUANTITY"]?>" size="3" onkeyup="validateInt(this)">
-                                                        <input class="goodId" type="hidden" value="<?=$arBasketItem['PRODUCT_ID']?>" />
-                                                    </td>
-                                                    <?endif;?>
-                                                <td><span class="sum"><?=number_format(round($arBasketItem['PRICE']*$arBasketItem['QUANTITY'], 2), 2, '.', ' ');?></span>&nbsp;<?//=iconv("CP1251", "UTF-8", 'руб.')?></td>
-                                                <td class="cart-item-actions">
-                                                    <a class="cart-shelve-item" href="<?=str_replace("#ID#", $arBasketItem["ID"], $arUrlTempl["delete"])?>" onclick="location.href='<?=str_replace("#ID#", $arBasketItem["ID"], $arUrlTempl["delete"])?>'" title="<?=iconv("CP1251", "UTF-8", 'Удалить товар из корзины')?>"><img src="/images/basket_del.png" /></a>
-                                                </td>
-                                            </tr>
-
+                                    <table class="product-offers" cellpadding="0" cellspacing="0">
+                                        <colgroup>
+                                            <col width="185">
+                                            <col width="75">
+                                            <col width="102">
+                                            <col width="112">
+                                            <col width="170">
+                                            <col width="83">
+                                        </colgroup>
+                                        <tbody>
                                             <?
-                                            }
-                                        ?>
-                                    </tbody>
-                                </table>
+                                                foreach($arItem['OFFER_KEYS'] as $offerKey) {
+                                                    $arBasketItem = $arResult["ITEMS"]["AnDelCanBuy"][$offerKey];
+
+                                                    $res = CIBlockElement::GetList(Array(), array('ID'=>$arBasketItem['PRODUCT_ID']), false, false, array('PROPERTY__size'));
+                                                    while($ob = $res->Fetch())
+                                                    {
+                                                        $size=$ob['PROPERTY__SIZE_VALUE'];
+                                                    }   
+
+
+                                                    $res = CIBlockElement::GetByID($arBasketItem["PRODUCT_ID"]);
+                                                    if($ar_res = $res->GetNext())
+                                                        $sect_id=$ar_res['IBLOCK_SECTION_ID'];
+                                                ?>
+                                                <tr>
+
+                                                    <?  
+                                                        foreach($arBasketItem['PROPS'] as $arProp) {
+                                                            if($arProp['CODE'] != 'CML2_LINK') {
+                                                            ?>
+
+                                                            <?
+                                                            }
+                                                        }
+                                                    ?> <td class="prod_name"><a href="/catalog/<?=$sect_id?>/<?=$arBasketItem["PRODUCT_ID"]?>/"><?=html_entity_decode($arBasketItem['NAME']); ?></a></td>
+                                                    <td><?=$size?></td>
+                                                    <?if (in_array("PRICE", $arParams["COLUMNS_LIST"])):?>
+                                                        <td class="cart-item-price"><?
+                                                            echo number_format($arBasketItem['PRICE'], 2, '.', ' ');?></td>
+                                                        <?endif;?>
+                                                    <?if (in_array("QUANTITY", $arParams["COLUMNS_LIST"])):?>
+                                                        <td class="cart-item-quantity"> 
+                                                            <span class="minus">-</span>
+                                                            <input class="cart-item-quantity-input" maxlength="15" type="text" data-measure="<?if (!empty($arBasketItem["MEASURE"])){ echo $arBasketItem["MEASURE"];} else { echo "1"; }?>" name="QUANTITY_<?=$arBasketItem["ID"] ?>" value="<?=$arBasketItem["QUANTITY"]?>" size="3" onkeyup="validateInt(this)">
+                                                            <span class="plus">+</span>
+                                                            <input class="goodId" type="hidden" value="<?=$arBasketItem['PRODUCT_ID']?>" />
+                                                        </td>
+                                                        <?endif;?>
+                                                    <td><span class="sum"><?=number_format(round($arBasketItem['PRICE']*$arBasketItem['QUANTITY'], 2), 2, '.', ' ');?></span>&nbsp;<?//=iconv("CP1251", "UTF-8", 'руб.')?></td>
+                                                    <td class="cart-item-actions">
+                                                        <a class="cart-shelve-item" href="<?=str_replace("#ID#", $arBasketItem["ID"], $arUrlTempl["delete"])?>" onclick="location.href='<?=str_replace("#ID#", $arBasketItem["ID"], $arUrlTempl["delete"])?>'" title="<?=iconv("CP1251", "UTF-8", 'Удалить товар из корзины')?>"><img src="/images/basket_del.png" /></a>
+                                                    </td>
+                                                </tr>
+
+                                                <?
+                                                }
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

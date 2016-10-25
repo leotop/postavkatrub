@@ -23,7 +23,12 @@ button.bButton {border:0; height:23px; cursor:pointer; background:url(../images/
 .bButton_bottom {
      margin-top:10px
 }
-
+.cart-item-quantity span.minus {
+    margin-left: 23px !important;
+}
+.cart-item-quantity-input {
+    float:left;
+}
 .addToCart {cursor:pointer;
                         background-color: #1e5799 !important;
                         background-image: url(/images/basket-icon.png) !important;
@@ -289,9 +294,16 @@ button.bButton {border:0; height:23px; cursor:pointer; background:url(../images/
 				.product-list-head tr td {text-align:center; padding:3px 0;}
 				.product-list-head tr td:last-child {}
                 
+            .product-list-head-basket {color:#000000; font-family:arial; font-weight:bold; width:660px; margin-top: 15px;}
+                .product-list-head-basket tr td {text-align:center; vertical-align:middle; padding:3px 0; border: 1px solid #B6BABC ; border-bottom: 0px solid #B6BABC ;}
+                .product-list-head-basket tr td:last-child {}
+            .last-basket-td { border-bottom: 0px solid #B6BABC !important; border-top: 0px solid #B6BABC !important; border-right: 0px solid #B6BABC !important;}
+                
 			.product-list {padding-bottom:10px;}
-				.product-row {width:700px; padding:5px 5px 5px 0px; margin-bottom:1px;}
-					.product-row-inner {padding:5px 3px 5px 0px;}
+				.product-basket .product-row {width:700px; padding:0px; margin-bottom:1px;}
+					.product-basket .product-row .product-row-inner {padding:0px;}
+                .product-row {width:700px; padding:5px 5px 5px 0px; margin-bottom:1px;}
+                    .product-row-inner {padding:5px 3px 5px 0px;}
 						.product-row-inner h4 {color:#fff; font-size:14px; font-weight:normal;margin-bottom: 10px !important;}
 							.product-row-inner h4 a {color:#fff; text-decoration:none;}
 						.product-row-inner .product-desr {padding:0px 0 0 0; border:2px solid #B6BABC !important;}
