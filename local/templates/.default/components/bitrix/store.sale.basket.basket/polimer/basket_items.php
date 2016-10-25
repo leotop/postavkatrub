@@ -24,7 +24,6 @@
             //sum=sum.toFixed(2);
             if (isNaN(sum)) {sum=0;}
             sum = number_format(sum, 2, '.', ' ');
-            alert(sum);
             $(this).parent().parent().find('.sum').text(sum);
             //alert($(this).val());
 
