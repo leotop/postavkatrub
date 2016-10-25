@@ -340,7 +340,7 @@ function yenisite_set_quantity(id, sign, url, titles, control_quantity, product_
                 url = document.location.href;
                  
                 $('#YS_BS_TOTALSUM_TOP').load(url + " #YS_BS_TOTALSUM_TOP > *");
-                $('.yen-bs-sum').load(url + " .yen-bs-sum > *");
+                $('.yen-bs-make_order').load(url + " .yen-bs-make_order > *");
 
                 $('.basket-price').html(str_total_sum +' руб.');
                 $('.total-price b').html(str_total_sum +' руб.');
