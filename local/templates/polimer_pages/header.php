@@ -197,7 +197,7 @@
         <?
             $APPLICATION->IncludeComponent(
 	"bitrix:sale.basket.basket.small", 
-	"bitronic_edit", 
+	"bitronic_reedit", 
 	array(
 		"PATH_TO_ORDER" => "/personal/order/make/",
 		"COLOR_SCHEME" => "ice",
@@ -215,7 +215,7 @@
 		"START_FLY_PX" => $start_fly_px,
 		"MARGIN_TOP_FLY_PX" => "0",
 		"BASKET_POSITION" => "LEFT",
-		"COMPONENT_TEMPLATE" => "bitronic_edit",
+		"COMPONENT_TEMPLATE" => "bitronic_reedit",
 		"PATH_TO_BASKET" => "/personal/basket.php",
 		"SHOW_DELAY" => "Y",
 		"SHOW_NOTAVAIL" => "Y",

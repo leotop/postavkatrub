@@ -16,7 +16,7 @@
 
         }
     }
-
+   
     $APPLICATION->SetAdditionalCSS($templateFolder."/style_cart.css");
     $APPLICATION->SetAdditionalCSS($templateFolder."/style.css");
     if(empty($_REQUEST["is_ajax_post"])){
