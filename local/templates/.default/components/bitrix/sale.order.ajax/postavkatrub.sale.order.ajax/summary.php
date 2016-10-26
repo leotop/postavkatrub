@@ -46,8 +46,6 @@
                         <tbody>
                             <?
                                 foreach($arResult["BASKET_ITEMS"] as $arBasketItems) {
-                                    // arshow($arBasketItems);
-
                                     $res = CIBlockElement::GetByID($arBasketItems['PRODUCT_ID']);
                                     if($ar_res = $res->GetNext())
                                         $section_id=$ar_res['IBLOCK_SECTION_ID'];
