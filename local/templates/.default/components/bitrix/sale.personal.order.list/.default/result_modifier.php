@@ -18,7 +18,7 @@
         if ($arOrderItem['ORDER']["STATUS_ID"] != 'S') {
             foreach ($arOrderItem["BASKET_ITEMS"] as $arBasketItem) {
                 /*echo 'В корзине: '.$arBasketItem['QUANTITY'].' На складе: '.$arItemsQuantity[$arBasketItem['PRODUCT_ID']].'<br>'; */       
-                if ($arBasketItem['QUANTITY'] > $arItemsQuantity[$arBasketItem['PRODUCT_ID']]) {
+                if (($arOrderItem['ORDER']['PERSON_TYPE_ID'] == INDIVIDUAL_USER_TYPE) && ($arBasketItem['QUANTITY'] > $arItemsQuantity[$arBasketItem['PRODUCT_ID']])) {
                     $arResult['ORDERS'][$arOrderItemID]["ORDER"]['AVAILABLE_FOR_ONLINE_PAY'] = 'N';    
                 }     
             }            
