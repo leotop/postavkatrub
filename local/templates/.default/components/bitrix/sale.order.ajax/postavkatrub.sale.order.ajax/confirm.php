@@ -1,5 +1,5 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-<? 
+<?
     if (!empty($arResult["ORDER"]))
     {
     ?>
@@ -13,8 +13,8 @@
             </td>
         </tr>
     </table>
-    <?
-        if (!empty($arResult["PAY_SYSTEM"]))
+    <?    
+        if (!empty($arResult ["PAY_SYSTEM"]))
         {
         ?>
         <br /><br />
@@ -35,7 +35,7 @@
                     <td>
                         <?
 
-                            if (($arResult["PAY_SYSTEM"]["ID"] == SBERBANK_PAYSYSTEM) && ($GLOBALS["ShowSberbank"] == "N")) {                                
+                            if (($arResult["PAY_SYSTEM"]["ID"] == SBERBANK_PAYSYSTEM) && ($_SESSION["AVAILABLE_FOR_ONLINE_PAY"] == "N")) {                                
                                 echo GetMessage("SBERBANK_PAY_NOT_AVAILABLE");    
                             } else {
                                 $service = \Bitrix\Sale\PaySystem\Manager::getObjectById($arResult["ORDER"]['PAY_SYSTEM_ID']);
