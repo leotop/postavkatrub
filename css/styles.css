@@ -35,7 +35,7 @@ button.bButton {border:0; height:23px; cursor:pointer; background:url(../images/
                         background-repeat: no-repeat;
                         font-size: 12px !important;
 }
-
+    
 .product-list-head tr td {vertical-align: middle;}
 .product-offers tr td {background: none repeat scroll 0 0 #FFFFFF;}
 
