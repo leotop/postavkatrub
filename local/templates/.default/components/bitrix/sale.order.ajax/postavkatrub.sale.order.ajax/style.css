@@ -193,6 +193,14 @@ label.selected .bx_logotype
 	background: url(/local/templates/.default/components/bitrix/sale.order.ajax/postavkatrub.sale.order.ajax/images/imgchekedInpRadio.png);
 }
 
+.notForPay {
+    width:26px;
+    height: 26px;
+    background: url(/local/templates/.default/components/bitrix/sale.order.ajax/postavkatrub.sale.order.ajax/images/NotForPayButton.png) ;
+    float:left;
+    margin-right: 20px;
+}
+
 #order_form_div .sale_order_table .paysystem_name,
 #order_form_div .sale_order_confirm .paysystem_name {
 	font-size: 11px;

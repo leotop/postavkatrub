@@ -186,7 +186,7 @@
                                         $showDelimeter = true;
                                     }
                                 ?>
-
+                                <?/*arshow($payment)*/?>
                                 <div class="sale-order-list-inner-row-body">
                                    
                                     <div class="col-md-9 col-sm-8 col-xs-12 sale-order-list-payment">
@@ -237,11 +237,12 @@
                                         ?>
                                     </div>
                                     <?  
-                                        if ($payment['PAID'] === 'N' && $payment['IS_CASH'] !== 'Y')
+                                        if ($payment['PAID'] === 'N' && $payment['IS_CASH'] !== 'Y' && $order['ORDER']['AVAILABLE_FOR_ONLINE_PAY'] != 'N')
                                         {
                                             if ($payment['NEW_WINDOW'] === 'Y')
-                                            {
+                                            {                                            
                                             ?>
+                                            <?/*if($order['ORDER']['AVAILABLE_FOR_ONLINE_PAY'] == 'N') { echo 'style = "display:none"'; };*/?>
                                             <div class="col-md-3 col-sm-4 col-xs-12 sale-order-list-button-container">
                                                 <a class="sale-order-list-button" target="_blank" href="<?=htmlspecialcharsbx($payment['PSA_ACTION_FILE'])?>">
                                                     <?=Loc::getMessage('SPOL_TPL_PAY')?>
@@ -251,6 +252,7 @@
                                             }
                                             else
                                             {
+                                            arshow($order['ORDER']['AVAILABLE_FOR_ONLINE_PAY']);
                                             ?>
                                             <div class="col-md-3 col-sm-4 col-xs-12 sale-order-list-button-container">
                                                 <a class="sale-order-list-button ajax_reload" href="<?=htmlspecialcharsbx($payment['PSA_ACTION_FILE'])?>">
@@ -263,7 +265,7 @@
                                     ?>
 
                                 </div>
-                                <div class="col-lg-9 col-md-9 col-sm-10 col-xs-12 sale-order-list-inner-row-template">
+                                <div id="id<?=$order["ID"]?>" class="col-lg-9 col-md-9 col-sm-10 col-xs-12 sale-order-list-inner-row-template<?if ($order['ORDER']['AVAILABLE_FOR_ONLINE_PAY'] == 'N') { echo " hide_sberbank_service";};?>">
                                     <a class="sale-order-list-cancel-payment">
                                         <i class="fa fa-long-arrow-left"></i> <?=Loc::getMessage('SPOL_CANCEL_PAYMENT')?>
                                     </a>

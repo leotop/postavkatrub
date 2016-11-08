@@ -34,8 +34,11 @@
                 <tr>
                     <td>
                         <?
-                            $service = \Bitrix\Sale\PaySystem\Manager::getObjectById($arResult["ORDER"]['PAY_SYSTEM_ID']);
 
+                            if (($arResult["PAY_SYSTEM"]["ID"] == SBERBANK_PAYSYSTEM) && ($GLOBALS["ShowSberbank"] == "N")) {                                
+                                echo GetMessage("SBERBANK_PAY_NOT_AVAILABLE");    
+                            } else {
+                                $service = \Bitrix\Sale\PaySystem\Manager::getObjectById($arResult["ORDER"]['PAY_SYSTEM_ID']);
                             if ($arResult["PAY_SYSTEM"]["NEW_WINDOW"] == "Y")
                             {
                             ?>
@@ -81,14 +84,9 @@
                     </td>
 
                 </tr>
-                <?
+                <? }
                 }
             ?>                        
-        <?if($arResult["PAY_SYSTEM"]["ID"] == SBERBANK_PAYSYSTEM){?>
-            <td>
-                <?=GetMessage("SBERBANK_PAY_INFO")?>    
-            </td>
-        <?}?>
         </table>
         <?
         }
