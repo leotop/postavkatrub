@@ -274,6 +274,12 @@
 	cursor: pointer;
 }
 
+.sale-order-list-repeat-link {
+    margin-top: 3px;
+}
+
+
+
 .sale-order-list-cancel-link {
 	display: inline-block;
 	color: #9b9b9b;
@@ -286,7 +292,7 @@ div.sale-order-list-repeat-container {
 
 .sale-order-list-repeat-link {
 	display: inline-block;
-	padding: 0 0 0 13px;
+	padding: 5px 0;
 	vertical-align: middle;
 }
 
@@ -298,6 +304,16 @@ div.sale-order-list-repeat-container {
 	height: 13px;
 	background: url(images/sale-order-repeat.svg) no-repeat;
 	vertical-align: middle;
+}
+
+.sale-order-list-cancel-link:before {
+    content: "";
+    display: inline-block;
+    margin: 0 3px 4px 0;
+    width: 10px;
+    height: 13px;
+    background: url(images/sale-order-cancel.png) no-repeat;
+    vertical-align: middle;
 }
 
 .sale-order-link-accomplished {
@@ -322,6 +338,15 @@ div.sale-order-list-repeat-container {
     font-size: 16px;
 }
 
+.hide_sberbank_service .sale-order-payment-change-pp-company:nth-child(2) {
+    display: none !important;
+}
+
+.sale-order-payment-change-pp-company {
+    padding-left: 0px !important;
+}
+
+
 .sale-order-list-about-link {
 	font: bold 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -330,6 +355,7 @@ div.sale-order-list-repeat-container {
 .sale-order-list-status-success {
 	display: inline-block;
 	padding: 4px 10px 5px 8px;
+    margin-left: 6px;
 	border: 1px solid #eab3b9;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
@@ -367,9 +393,11 @@ div.sale-order-list-repeat-container {
 /*}*/
 
 .sale-order-list-button {
+    position: absolute;
 	display: block;
 	padding: 0 17px;
-	float: right;
+    right: 0px;
+    top: 30px;
 	max-width: 115px;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
@@ -380,6 +408,7 @@ div.sale-order-list-repeat-container {
 	font: bold 13px/38px "Helvetica Neue", Helvetica, Arial, sans-serif;
 	text-align: center;
 	text-transform: uppercase;
+    text-decoration: none;
 }
 
 .sale-order-list-button:hover {
